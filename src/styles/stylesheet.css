@@ -56,3 +56,20 @@ h1 {
     line-height: 2;
     padding: 5px;
 }
+
+.addIcon {
+    margin: 20px auto;
+    display: table;
+    padding: 40px;
+    background: url('https://cdn1.iconfinder.com/data/icons/ios-11-ui-elements-vol-1/29/21_add_insert_plus_new_sign_button-512.png');
+    background-size: contain;
+    border: none;
+}
+
+.form {
+    background: red;
+    margin: 0 auto;
+    max-width: 360px;
+    padding: 45px;
+    text-align: center;
+}
