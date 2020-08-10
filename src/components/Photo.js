@@ -1,19 +1,20 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
+import {Link} from 'react-router-dom';
 
 class Photo extends Component {
     render() {
         const post = this.props.post;
         return (
             <figure className="figure">
-                <img className="photo" src={post.imageLink} alt={post.description} />
+                <Link to={`/single/${post.id}`}>
+                    <img className="photo" src={post.imageLink} alt={post.description} />
+                </Link>
                 <figcaption>
                     <p>{post.description}</p>
                 </figcaption>
                 <div className="button-container">
-                    <button 
-                        className="remove-button" 
-                        onClick={() => {this.props.onRemovePhoto(post)}}>
+                    <button onClick={() => {this.props.removePost(this.props.index)}}>
                     Remove</button>
                 </div>
             </figure>
@@ -22,8 +23,7 @@ class Photo extends Component {
 }
 
 Photo.propTypes = {
-    post: PropTypes.object.isRequired,
-    onRemovePhoto: PropTypes.func.isRequired
+    post: PropTypes.object.isRequired
 };
 
 export default Photo;
