@@ -1,4 +1,3 @@
-/* eslint-disable no-restricted-globals */
 import React, {Component} from 'react';
 import {Route, Link} from 'react-router-dom';
 
@@ -7,6 +6,20 @@ import AddPhoto from './AddPhoto';
 import Single from './Single';
 
 class Main extends Component {
+
+  state = {
+    loading: true
+  }
+
+  componentDidMount() {
+    this.props.startLoadingPosts()
+      .then(() => {
+        this.setState({
+          loading: false
+        });
+      });
+    this.props.startLoadingComments();
+  }
 
   render() {
     return (
@@ -22,11 +35,14 @@ class Main extends Component {
           )} />
         <Route
           path="/addPhoto"
-          render={(history) => (
-            <AddPhoto {...this.props} onHistory={history} />
+          render={() => (
+            <AddPhoto {...this.props} />
           )} />
         <Route path="/single/:id" render={(params) => (
-          <Single {...this.props} {...params} />
+          <Single 
+            loading={this.state.loading} 
+            {...this.props} 
+            {...params} />
         )} />
       </div>
     );
